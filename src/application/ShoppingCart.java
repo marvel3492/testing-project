@@ -1,13 +1,14 @@
+package application;
+
 import java.util.TreeMap;
 
 public class ShoppingCart {
     private static TreeMap<Integer, Integer> cart = new TreeMap<>();
     private static int count = 0;
 
-    private ShoppingCart() { }
-
-    public static boolean willOverflow(int quantity) { // To prevent overflow
-        return count + quantity < 0;
+    // https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html
+    public ShoppingCart() throws IllegalStateException {
+        throw new IllegalStateException("ShoppingCart cannot be instantiated");
     }
 
     public static void addToCart(int itemId, int quantity) {
@@ -17,13 +18,16 @@ public class ShoppingCart {
             System.out.println("Quantity is less than 1");
         } else if (Items.getItem(itemId) == null) {
             System.out.println("Item with item ID " + itemId + " does not exist");
-        } else if (willOverflow(quantity)) {
-            System.out.println("Item count will overflow with specified quantity");
         } else {
-            cart.put(itemId, quantity);
-            count += quantity;
-            System.out.println(Items.getItem(itemId).name() + " is added to the shopping cart");
-            System.out.println("The current count of items in the cart: " + getCount());
+            // https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html#addExact-long-long-
+            try {
+                count = Math.addExact(count, quantity);
+                cart.put(itemId, quantity);
+                System.out.println(Items.getItem(itemId).name() + " is added to the shopping cart");
+                System.out.println("The current count of items in the cart: " + getCount());
+            } catch (ArithmeticException e) {
+                System.out.println("Item count will overflow with specified quantity");
+            }
         }
     }
 
@@ -73,16 +77,18 @@ public class ShoppingCart {
             System.out.println("Shopping cart does not have item with item ID " + itemId);
         } else if (quantity < 1) {
             System.out.println("Quantity is less than 1");
-        } else if (willOverflow(quantity - cart.get(itemId))) {
-            System.out.println("Item count will overflow with specified quantity");
         } else if (quantity == cart.get(itemId)) {
             System.out.println("Quantity did not change");
         } else {
-            int dif = quantity - cart.get(itemId);
-            cart.put(itemId, quantity);
-            count += dif;
-            System.out.println("Changed quantity of " + Items.getItem(itemId).name());
-            System.out.println("The current count of items in the cart: " + getCount());
+            // https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html#addExact-long-long-
+            try {
+                count = Math.addExact(count, quantity - cart.get(itemId));
+                cart.put(itemId, quantity);
+                System.out.println("Changed quantity of " + Items.getItem(itemId).name());
+                System.out.println("The current count of items in the cart: " + getCount());
+            } catch (ArithmeticException e) {
+                System.out.println("Item count will overflow with specified quantity");
+            }
         }
     }
 

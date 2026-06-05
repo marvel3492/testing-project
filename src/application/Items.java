@@ -1,3 +1,5 @@
+package application;
+
 import java.util.TreeMap;
 
 public class Items {
@@ -5,7 +7,10 @@ public class Items {
     private static TreeMap<Integer, Item> items = new TreeMap<>();
     private static int maxId = 0;
 
-    private Items() { }
+    // https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html
+    public Items() throws IllegalStateException {
+        throw new IllegalStateException("Items cannot be instantiated");
+    }
 
     public static void validateName(String name) throws IllegalArgumentException {
         if (name == null) {
@@ -34,6 +39,7 @@ public class Items {
             }
         }
 
+        // https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html
         if (MAX_ITEMS == maxId) { // To prevent overflow
             throw new IllegalStateException("Maximum items reached");
         } else {

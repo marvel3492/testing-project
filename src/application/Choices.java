@@ -1,7 +1,12 @@
+package application;
+
 import java.util.Scanner;
 
 public class Choices {
-    private Choices() {}
+    // https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html
+    public Choices() throws IllegalStateException {
+        throw new IllegalStateException("Choices cannot be instantiated");
+    }
 
     public static void validateScanner(Scanner scanner) throws IllegalArgumentException {
         if (scanner == null) {
@@ -15,7 +20,7 @@ public class Choices {
         while (name == null || name.isBlank()) {
             System.out.println("Enter name: ");
             name = scanner.nextLine();
-            if (name == null || name.isBlank()) {
+            if (name.isBlank()) {
                 System.out.println("Name cannot be blank");
             }
         }

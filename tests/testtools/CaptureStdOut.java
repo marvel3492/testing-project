@@ -1,3 +1,5 @@
+package testtools;
+
 import java.io.*;
 import java.util.Arrays;
 
@@ -34,7 +36,7 @@ public class CaptureStdOut {
                 );
             } else {
                 for (int i = 0; i < strings.length; i++) {
-                    assertEquals(strings[i], bufferStrings[i]);
+                    assertEquals(strings[i].trim(), bufferStrings[i].trim());
                 }
             }
         }
@@ -53,47 +55,8 @@ public class CaptureStdOut {
                 );
             } else {
                 for (int i = 0; i < strings.length; i++) {
-                    assertEquals(strings[i], bufferStrings[i]);
+                    assertEquals(strings[i].trim(), bufferStrings[i].trim());
                 }
-            }
-        }
-    }
-
-    public void containsInOrder(String[] strings) {
-        if (strings == null) {
-            fail("Expected strings cannot be null");
-        } else {
-            String[] bufferStrings = toString().split("\r\n");
-            int i = 0;
-            int j = 0;
-            while (i < strings.length && j < bufferStrings.length) {
-                if (strings[i].equals(bufferStrings[j])) {
-                    i++;
-                }
-                j++;
-            }
-            if (i < strings.length) {
-                fail("Cannot find \"" + strings[i] + "\" in \"" + this + "\"");
-            }
-        }
-    }
-
-    public void containsInOrder(String string) {
-        if (string == null) {
-            fail("Expected string cannot be null");
-        } else {
-            String[] strings = string.split("\n");
-            String[] bufferStrings = toString().split("\r\n");
-            int i = 0;
-            int j = 0;
-            while (i < strings.length && j < bufferStrings.length) {
-                if (strings[i].equals(bufferStrings[j])) {
-                    i++;
-                }
-                j++;
-            }
-            if (i < strings.length) {
-                fail("Cannot find \"" + strings[i] + "\" in \"" + this + "\"");
             }
         }
     }

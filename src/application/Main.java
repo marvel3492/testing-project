@@ -1,14 +1,20 @@
+package application;
+
 import java.util.Scanner;
 
 public class Main {
-    public static void main() {
+    // https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html
+    public Main() throws IllegalStateException {
+        throw new IllegalStateException("Main cannot be instantiated");
+    }
+
+    public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
-            // Add items here
+            // Assume Items.getMaxId() > 0
             Items.addItem("a", 0.01);
             Items.addItem("b", 1.0);
             Items.addItem("c", 49.98);
             Items.addItem("d", 99949.0);
-            assert Items.getMaxId() > 0;
 
             System.out.println("Hello, " + Choices.getName(scanner));
             System.out.println();

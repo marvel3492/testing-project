@@ -23,7 +23,7 @@ public class ShoppingCart {
             try {
                 count = Math.addExact(count, quantity);
                 cart.put(itemId, quantity);
-                System.out.println(Items.getItem(itemId).name() + " is added to the shopping cart");
+                System.out.println(Items.getItem(itemId).getName() + " is added to the shopping cart");
                 System.out.println("The current count of items in the cart: " + getCount());
             } catch (ArithmeticException e) {
                 System.out.println("Item count will overflow with specified quantity");
@@ -34,7 +34,7 @@ public class ShoppingCart {
     public static double getRawTotal() {
         double total = 0.0;
         for (Integer itemId : cart.keySet()) {
-            total += Items.getItem(itemId).price() * cart.get(itemId);
+            total += Items.getItem(itemId).getPrice() * cart.get(itemId);
         }
 
         return Math.round(total * 100.0) / 100.0;
@@ -66,7 +66,7 @@ public class ShoppingCart {
             System.out.println("Cart is empty");
         } else {
             for (Integer itemId : cart.keySet()) {
-                System.out.println("ID: " + itemId + " | Item: " + Items.getItem(itemId).name() +
+                System.out.println("ID: " + itemId + " | Item: " + Items.getItem(itemId).getName() +
                         " | Quantity: " + cart.get(itemId));
             }
         }
@@ -84,7 +84,7 @@ public class ShoppingCart {
             try {
                 count = Math.addExact(count, quantity - cart.get(itemId));
                 cart.put(itemId, quantity);
-                System.out.println("Changed quantity of " + Items.getItem(itemId).name());
+                System.out.println("Changed quantity of " + Items.getItem(itemId).getName());
                 System.out.println("The current count of items in the cart: " + getCount());
             } catch (ArithmeticException e) {
                 System.out.println("Item count will overflow with specified quantity");

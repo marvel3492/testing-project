@@ -37,8 +37,8 @@ public class ItemsTests {
         assertNull(Items.getItem(0));
         assertDoesNotThrow(()-> Items.addItem("a", 0.0));
         Item item = Items.getItem(1);
-        Assertions.assertEquals("a", item.name());
-        Assertions.assertEquals(0.0, item.price());
+        Assertions.assertEquals("a", item.getName());
+        Assertions.assertEquals(0.0, item.getPrice());
         Assertions.assertEquals(1, Items.getMaxId());
     }
 
@@ -48,8 +48,8 @@ public class ItemsTests {
         assertNull(Items.getItem(0));
         assertDoesNotThrow(()-> Items.addItem("aa", 0.01));
         Item item = Items.getItem(1);
-        Assertions.assertEquals("aa", item.name());
-        Assertions.assertEquals(0.01, item.price());
+        Assertions.assertEquals("aa", item.getName());
+        Assertions.assertEquals(0.01, item.getPrice());
         Assertions.assertEquals(1, Items.getMaxId());
     }
 
@@ -59,14 +59,14 @@ public class ItemsTests {
         assertNull(Items.getItem(0));
         assertDoesNotThrow(()-> Items.addItem("a", 0.0));
         Item item = Items.getItem(1);
-        Assertions.assertEquals("a", item.name());
-        Assertions.assertEquals(0.0, item.price());
+        Assertions.assertEquals("a", item.getName());
+        Assertions.assertEquals(0.0, item.getPrice());
         Assertions.assertEquals(1, Items.getMaxId());
         assertThrows(IllegalArgumentException.class, ()-> Items.addItem("a", 0.0));
         assertThrows(IllegalArgumentException.class, ()-> Items.addItem("a", 0.01));
         item = Items.getItem(1);
-        Assertions.assertEquals("a", item.name());
-        Assertions.assertEquals(0.0, item.price());
+        Assertions.assertEquals("a", item.getName());
+        Assertions.assertEquals(0.0, item.getPrice());
         Assertions.assertEquals(1, Items.getMaxId());
         assertNull(Items.getItem(2));
     }
@@ -77,43 +77,43 @@ public class ItemsTests {
         assertNull(Items.getItem(0));
         assertDoesNotThrow(()-> Items.addItem("a ", 0.0));
         Item item = Items.getItem(1);
-        Assertions.assertEquals("a", item.name());
-        Assertions.assertEquals(0.0, item.price());
+        Assertions.assertEquals("a", item.getName());
+        Assertions.assertEquals(0.0, item.getPrice());
         Assertions.assertEquals(1, Items.getMaxId());
         assertDoesNotThrow(()-> Items.addItem(" b", 0.01));
         item = Items.getItem(2);
-        Assertions.assertEquals("b", item.name());
-        Assertions.assertEquals(0.01, item.price());
+        Assertions.assertEquals("b", item.getName());
+        Assertions.assertEquals(0.01, item.getPrice());
         Assertions.assertEquals(2, Items.getMaxId());
         assertDoesNotThrow(()-> Items.addItem(" c ", 0.02));
         item = Items.getItem(3);
-        Assertions.assertEquals("c", item.name());
-        Assertions.assertEquals(0.02, item.price());
+        Assertions.assertEquals("c", item.getName());
+        Assertions.assertEquals(0.02, item.getPrice());
         Assertions.assertEquals(3, Items.getMaxId());
         assertDoesNotThrow(()-> Items.addItem("d  ", 0.03));
         item = Items.getItem(4);
-        Assertions.assertEquals("d", item.name());
-        Assertions.assertEquals(0.03, item.price());
+        Assertions.assertEquals("d", item.getName());
+        Assertions.assertEquals(0.03, item.getPrice());
         Assertions.assertEquals(4, Items.getMaxId());
         assertDoesNotThrow(()-> Items.addItem(" e  ", 0.04));
         item = Items.getItem(5);
-        Assertions.assertEquals("e", item.name());
-        Assertions.assertEquals(0.04, item.price());
+        Assertions.assertEquals("e", item.getName());
+        Assertions.assertEquals(0.04, item.getPrice());
         Assertions.assertEquals(5, Items.getMaxId());
         assertDoesNotThrow(()-> Items.addItem("  f", 0.05));
         item = Items.getItem(6);
-        Assertions.assertEquals("f", item.name());
-        Assertions.assertEquals(0.05, item.price());
+        Assertions.assertEquals("f", item.getName());
+        Assertions.assertEquals(0.05, item.getPrice());
         Assertions.assertEquals(6, Items.getMaxId());
         assertDoesNotThrow(()-> Items.addItem("  g ", 0.06));
         item = Items.getItem(7);
-        Assertions.assertEquals("g", item.name());
-        Assertions.assertEquals(0.06, item.price());
+        Assertions.assertEquals("g", item.getName());
+        Assertions.assertEquals(0.06, item.getPrice());
         Assertions.assertEquals(7, Items.getMaxId());
         assertDoesNotThrow(()-> Items.addItem("  h  ", 0.07));
         item = Items.getItem(8);
-        Assertions.assertEquals("h", item.name());
-        Assertions.assertEquals(0.07, item.price());
+        Assertions.assertEquals("h", item.getName());
+        Assertions.assertEquals(0.07, item.getPrice());
         Assertions.assertEquals(8, Items.getMaxId());
         for (char c = 'a'; c <= 'h'; c++) {
             char finalC = c;
@@ -137,13 +137,13 @@ public class ItemsTests {
         assertNull(Items.getItem(0));
         assertDoesNotThrow(()-> Items.addItem("a", 0.0));
         Item item = Items.getItem(1);
-        Assertions.assertEquals("a", item.name());
-        Assertions.assertEquals(0.0, item.price());
+        Assertions.assertEquals("a", item.getName());
+        Assertions.assertEquals(0.0, item.getPrice());
         Assertions.assertEquals(1, Items.getMaxId());
         assertDoesNotThrow(()-> Items.addItem("B", 0.01));
         item = Items.getItem(2);
-        Assertions.assertEquals("B", item.name());
-        Assertions.assertEquals(0.01, item.price());
+        Assertions.assertEquals("B", item.getName());
+        Assertions.assertEquals(0.01, item.getPrice());
         Assertions.assertEquals(2, Items.getMaxId());
         assertThrows(IllegalArgumentException.class, ()-> Items.addItem("a", 0.00));
         assertThrows(IllegalArgumentException.class, ()-> Items.addItem("A", 0.00));
@@ -162,8 +162,8 @@ public class ItemsTests {
             double price = Double.parseDouble(name);
             assertDoesNotThrow(()-> Items.addItem(name, price));
             Item item = Items.getItem(itemId);
-            Assertions.assertEquals(name, item.name());
-            Assertions.assertEquals(price, item.price());
+            Assertions.assertEquals(name, item.getName());
+            Assertions.assertEquals(price, item.getPrice());
             Assertions.assertEquals(itemId, Items.getMaxId());
         }
 

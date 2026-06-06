@@ -34,7 +34,7 @@ public class Items {
 
         // Check for duplicates
         for (Item item : items.values()) { // Simple for efficiency, but not optimal
-            if (item.name().trim().equalsIgnoreCase(name.trim())) {
+            if (item.getName().trim().equalsIgnoreCase(name.trim())) {
                 throw new IllegalArgumentException("Item already exists");
             }
         }

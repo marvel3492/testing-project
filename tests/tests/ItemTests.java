@@ -18,28 +18,28 @@ public class ItemTests {
     @Test
     void validItemTest1() {
         Item item = new Item("a", 0.0);
-        Assertions.assertEquals("a", item.name());
-        Assertions.assertEquals(0.0, item.price());
+        Assertions.assertEquals("a", item.getName());
+        Assertions.assertEquals(0.0, item.getPrice());
     }
 
     @Test
     void validItemTest2() {
         Item item = new Item("aa", 0.01);
-        Assertions.assertEquals("aa", item.name());
-        Assertions.assertEquals(0.01, item.price());
+        Assertions.assertEquals("aa", item.getName());
+        Assertions.assertEquals(0.01, item.getPrice());
     }
 
     @Test
     void validItemTest3() {
         Item item = new Item("a", 99999.98);
-        Assertions.assertEquals("a", item.name());
-        Assertions.assertEquals(99999.98, item.price());
+        Assertions.assertEquals("a", item.getName());
+        Assertions.assertEquals(99999.98, item.getPrice());
     }
 
     @Test
     void validItemTest4() {
         Item item = new Item("a", 99999.99);
-        Assertions.assertEquals("a", item.name());
-        Assertions.assertEquals(99999.99, item.price());
+        Assertions.assertEquals("a", item.getName());
+        Assertions.assertEquals(99999.99, item.getPrice());
     }
 }
